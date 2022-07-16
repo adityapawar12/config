@@ -15,7 +15,10 @@ mkdir ~/vicky/videos/series/
 mkdir ~/vicky/videos/movies/
 mkdir ~/vicky/videos/tutorials/
 mkdir ~/vicky/videos/tutorials/coding/
+mkdir ~/vicky/videos/tutorials/coding/udemy/
+mkdir ~/vicky/videos/tutorials/coding/youtube/
 mkdir ~/vicky/videos/tutorials/music-production/
+mkdir ~/vicky/videos/tutorials/music-production/youtube/
 mkdir ~/vicky/videos/my-videos/
 
 mkdir ~/vicky/other/
@@ -50,14 +53,23 @@ mkdir ~/vicky/music-production/synth/helm/
 
 mkdir ~/vicky/coding/
 mkdir ~/vicky/coding/c/
+mkdir ~/vicky/coding/config/
 mkdir ~/vicky/coding/cpp/
+mkdir ~/vicky/coding/java/
+mkdir ~/vicky/coding/kotlin/
+mkdir ~/vicky/coding/android/
+mkdir ~/vicky/coding/flutter/
+mkdir ~/vicky/coding/react-native/
 mkdir ~/vicky/coding/python/
 mkdir ~/vicky/coding/web-devlopement/
 mkdir ~/vicky/coding/web-devlopement/angular-proj/
-mkdir ~/vicky/coding/web-devlopement/react-proj/
+mkdir ~/vicky/coding/web-devlopement/reactjs-proj/
+mkdir ~/vicky/coding/web-devlopement/veujs-proj/
 mkdir ~/vicky/coding/web-devlopement/node-proj/
 mkdir ~/vicky/coding/web-devlopement/php-proj/
 mkdir ~/vicky/coding/web-devlopement/python-proj/
 mkdir ~/vicky/coding/web-devlopement/vanilla-proj/
 mkdir ~/vicky/coding/c-sharp/
 mkdir ~/vicky/coding/bash/
+mkdir ~/vicky/coding/zsh/
+mkdir ~/vicky/coding/rust/
