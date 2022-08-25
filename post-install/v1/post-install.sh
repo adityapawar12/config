@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 
 ########################################################################
 #                       PATTERN FUNCTIONS
@@ -73,6 +73,7 @@ function upgradeArch() {
         case $yne in
             [Yy]* ) printf ">          RUNNING : sudo pacman -Syu          <\n"; 
                     sudo pacman -Syu; 
+                    sudo yay -Syu; 
                     break;;
             [Nn]* ) break;;
             [Ee]* ) exit;;
@@ -108,8 +109,11 @@ function installArchPrograms() {
     while true; do
         read -p "Do you want to install programs[yne]? " yne 
         case $yne in
-            [Yy]* ) printf ">          RUNNING : sudo pacman -S          <\n"; 
-                    sudo pacman -S vlc; 
+            [Yy]* ) printf ">          RUNNING : sudo pacman -S          <\n";
+                    sudo pacman -S --noconfirm vlc firefox alacritty qbittorrent kdeconnect brave-browser code p7zip audacious elisa filelight vim neovim neovim-qt gvim htop libreoffice-fresh lshw okular telegram-desktop rxvt-unicode;
+                    flatpak install flathub org.onlyoffice.desktopeditors
+                    flatpak install flathub md.obsidian.Obsidian
+                    flatpak install flathub com.google.Chrome
                     break;;
             [Nn]* ) break;;
             [Ee]* ) exit;;
@@ -117,6 +121,97 @@ function installArchPrograms() {
         esac
     done
 }
+
+function installI3OnArch() {
+    showPlusPattern; 
+    printf "                               INSTALL\n"; 
+    showPlusPattern; 
+    installSnapAndFlatpakArch
+    while true; do
+        read -p "Do you want to install i3 WM[yne]? " yne 
+        case $yne in
+            [Yy]* ) printf ">          RUNNING : sudo pacman -S          <\n";
+                    sudo pacman -S i3 xorg xorg-xdm dmenu i3status i3lock ttf-dejavu
+                    break;;
+            [Nn]* ) break;;
+            [Ee]* ) exit;;
+            * ) echo "Please answer y or n or e.";;
+        esac
+    done
+}
+
+function installArchExCodingPrograms() {
+    showPlusPattern; 
+    printf "                               INSTALL\n"; 
+    showPlusPattern; 
+    while true; do
+        read -p "Do you want to install extra coding programs[yne]? " yne 
+        case $yne in
+            [Yy]* ) printf ">          RUNNING : sudo pacman -S          <\n"; 
+                    sudo pacman -S --noconfirm netbeans pycharm-community-edition intellij-idea-community-edition codeblocks dbeaver godot kate mysql-workbench;
+                    yay -S android-studio;
+                    break;;
+            [Nn]* ) break;;
+            [Ee]* ) exit;;
+            * ) echo "Please answer y or n or e.";;
+        esac
+    done
+}
+
+function installArchExMediaPrograms() {
+    showPlusPattern; 
+    printf "                               INSTALL\n"; 
+    showPlusPattern; 
+    while true; do
+        read -p "Do you want to install extra media programs[yne]? " yne 
+        case $yne in
+            [Yy]* ) printf ">          RUNNING : sudo pacman -S          <\n"; 
+                    sudo pacman -S --noconfirm krita inkscape blender gimp kdenlive;
+                    yay -S deadbeef;
+                    break;;
+            [Nn]* ) break;;
+            [Ee]* ) exit;;
+            * ) echo "Please answer y or n or e.";;
+        esac
+    done
+}
+
+function installArchMusicProdPrograms() {
+    showPlusPattern; 
+    printf "                               INSTALL\n"; 
+    showPlusPattern; 
+    while true; do
+        read -p "Do you want to install music production programs[yne]? " yne 
+        case $yne in
+            [Yy]* ) printf ">          RUNNING : sudo pacman -S          <\n"; 
+                    sudo pacman -S --noconfirm ardour audacity lmms helm rosegarden surge stochas;
+                    yay -S vital-synth reaper tracktion-waveform;
+                    break;;
+            [Nn]* ) break;;
+            [Ee]* ) exit;;
+            * ) echo "Please answer y or n or e.";;
+        esac
+    done
+}
+
+function installArchGamingPrograms() {
+    showPlusPattern; 
+    printf "                               INSTALL\n"; 
+    showPlusPattern; 
+    while true; do
+        read -p "Do you want to install gaming programs[yne]? " yne 
+        case $yne in
+            [Yy]* ) printf ">          RUNNING : sudo pacman -S          <\n"; 
+                    sudo pacman -S --noconfirm dolphin-emu pcsx2 libretro-pcsx2 retroarch;
+                    # yay -S ;
+                    break;;
+            [Nn]* ) break;;
+            [Ee]* ) exit;;
+            * ) echo "Please answer y or n or e.";;
+        esac
+    done
+}
+
 
 ########################################################################
 #                       DEBIAN FUNCTIONS
@@ -129,6 +224,9 @@ function updateDebian() {
         read -p "Do you want to update your system[yne]? " yne 
         case $yne in
             [Yy]* ) printf ">          RUNNING : sudo apt update          <\n"; 
+                    sudo add-apt-repository ppa:aslatter/ppa
+                    sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+                    curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
                     sudo apt update; 
                     break;;
             [Nn]* ) break;;
@@ -183,7 +281,27 @@ function installDebianPrograms() {
         read -p "Do you want to install programs[yne]? " yne 
         case $yne in
             [Yy]* ) printf ">          RUNNING : sudo apt install          <\n"; 
-                    sudo apt install vlc; 
+                    sudo apt -y install vlc firefox alacritty qbittorrent kdeconnect brave-browser code p7zip-full audacious elisa filelight vim neovim neovim-qt vim-gtk htop libreoffice lshw okular telegram-desktop rxvt-unicode;
+                    flatpak install flathub org.onlyoffice.desktopeditors
+                    flatpak install flathub md.obsidian.Obsidian
+                    flatpak install flathub com.google.Chrome
+                    break;;
+            [Nn]* ) break;;
+            [Ee]* ) exit;;
+            * ) echo "Please answer y or n or e.";;
+        esac
+    done
+}
+
+function installI3OnDebian() {
+    showPlusPattern; 
+    printf "                               INSTALL\n"; 
+    showPlusPattern; 
+    while true; do
+        read -p "Do you want to install programs[yne]? " yne 
+        case $yne in
+            [Yy]* ) printf ">          RUNNING : sudo pacman -S          <\n";
+                    sudo apt install i3 xorg xorg dmenu i3status i3lock ttf-dejavu suckless-tools lightdm 
                     break;;
             [Nn]* ) break;;
             [Ee]* ) exit;;
@@ -209,6 +327,11 @@ then
     updateArch
     upgradeArch
     installArchPrograms
+    installI3OnArch
+    installArchExCodingPrograms
+    installArchExMediaPrograms
+    installArchMusicProdPrograms
+    installArchGamingPrograms
 elif [ "${distro,,}" == "ubuntu" ];
 then
     showBrickPattern
@@ -216,5 +339,7 @@ then
     showBrickPattern
     updateDebian
     upgradeDebian
+    installSnapAndFlatpakDebian
     installDebianPrograms
+    installI3OnDebian
 fi
