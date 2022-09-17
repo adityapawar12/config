@@ -90,7 +90,7 @@ function installSnapAndFlatpakArch() {
         read -p "Do you want to install snap and flatpak[yne]? " yne 
         case $yne in
             [Yy]* ) printf ">          RUNNING : sudo pacman -S snapd          <\n"; 
-                    sudo pacman -S snapd flatpak; 
+                    sudo pacman --needed -S snapd flatpak; 
                     sudo systemctl enable --now snapd.socket; 
                     sudo ln -s /var/lib/snapd/snap /snap;
                     break;;
@@ -110,7 +110,7 @@ function installArchPrograms() {
         read -p "Do you want to install programs[yne]? " yne 
         case $yne in
             [Yy]* ) printf ">          RUNNING : sudo pacman -S          <\n";
-                    sudo pacman -S --noconfirm vlc firefox alacritty qbittorrent kdeconnect brave-browser code p7zip audacious elisa filelight vim neovim neovim-qt gvim htop libreoffice-fresh lshw okular telegram-desktop rxvt-unicode;
+                    sudo pacman -S --needed --noconfirm vlc firefox alacritty qbittorrent kdeconnect brave-browser code p7zip audacious elisa filelight vim neovim neovim-qt gvim htop libreoffice-fresh lshw okular telegram-desktop rxvt-unicode;
                     flatpak install flathub org.onlyoffice.desktopeditors
                     flatpak install flathub md.obsidian.Obsidian
                     flatpak install flathub com.google.Chrome
@@ -131,11 +131,112 @@ function installI3OnArch() {
         read -p "Do you want to install i3 WM[yne]? " yne 
         case $yne in
             [Yy]* ) printf ">          RUNNING : sudo pacman -S          <\n";
-                    sudo pacman -S i3 xorg xorg-xdm dmenu i3status i3lock ttf-dejavu
+                    # sudo pacman -S i3 xorg xorg-xdm dmenu i3status i3lock ttf-dejavu
+                    sudo pacman -S --needed i3-wm i3lock i3status
                     break;;
             [Nn]* ) break;;
             [Ee]* ) exit;;
             * ) echo "Please answer y or n or e.";;
+        esac
+    done
+}
+
+function installAwesomeOnArch() {
+    showPlusPattern; 
+    printf "                               INSTALL\n"; 
+    showPlusPattern; 
+    installSnapAndFlatpakArch
+    while true; do
+        read -p "Do you want to install i3 WM[yne]? " yne 
+        case $yne in
+            [Yy]* ) printf ">          RUNNING : sudo pacman -S          <\n";
+                    sudo pacman -S --needed awesome vicious
+                    break;;
+            [Nn]* ) break;;
+            [Ee]* ) exit;;
+            * ) echo "Please answer y or n or e.";;
+        esac
+    done
+}
+
+function installXfceOnArch() {
+    showpluspattern; 
+    printf "                               install\n"; 
+    showpluspattern; 
+    installsnapandflatpakarch
+    while true; do
+        read -p "do you want to install XFCE [yne]? " yne 
+        case $yne in
+            [yy]* ) printf ">          running : sudo pacman -s          <\n";
+                    sudo pacman -S --needed xfce4-gtk3 xfce4-goodies xfce4-terminal network-manager-applet xfce4-notifyd-gtk3 xfce4-whiskermenu-plugin-gtk3 tumbler engrampa
+                    # USE LIGHTDM AS DEFUALT DISPLAY MANAGER 
+                    sudo pacman -S --needed lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
+                    sudo systemctl enable lightdm.service --force
+                    # systemctl reboot
+                    # MANJARO THEME FOR XFCE
+                    # sudo pacman -S --needed manjaro-xfce-settings manjaro-settings-manager
+                    # NEW USER FOR XFCE
+                    # sudo useradd -mg lp,network,power,sys,wheel aditya-xfce
+                    # sudo passwd aditya-xfce
+                    break;;
+            [nn]* ) break;;
+            [ee]* ) exit;;
+            * ) echo "please answer y or n or e.";;
+        esac
+    done
+}
+
+function installKdeOnArch() {
+    showpluspattern; 
+    printf "                               install\n"; 
+    showpluspattern; 
+    installsnapandflatpakarch
+    while true; do
+        read -p "do you want to install KDE Plasma [yne]? " yne 
+        case $yne in
+            [yy]* ) printf ">          running : sudo pacman -s          <\n";
+                    sudo pacman -S --needed plasma kio-extras
+                    # INSTALL EXTRA KDE APPLICATIONS
+                    # sudo pacman -S --needed kde-applications
+                    # USE SDDM AS DEFUALT DISPLAY MANAGER 
+                    # systemctl enable sddm.service --force
+                    # systemctl reboot
+                    # MANJARO THEME FOR KDE PLASMA 
+                    # sudo pacman -S --needed manjaro-kde-settings sddm-breath-theme manjaro-settings-manager-knotifier manjaro-settings-manager-kcm
+                    # sudo pacman -S --needed plasma5-themes-breath
+                    # NEW USER FOR KDE PLASMA
+                    # sudo useradd -mg lp,network,power,sys,wheel aditya-kde
+                    # sudo passwd aditya-kde
+                    break;;
+            [nn]* ) break;;
+            [ee]* ) exit;;
+            * ) echo "please answer y or n or e.";;
+        esac
+    done
+}
+
+function installGnomeOnArch() {
+    showpluspattern; 
+    printf "                               install\n"; 
+    showpluspattern; 
+    installsnapandflatpakarch
+    while true; do
+        read -p "do you want to install i3 wm[yne]? " yne 
+        case $yne in
+            [yy]* ) printf ">          running : sudo pacman -s          <\n";
+                    sudo pacman -S --needed gnome gnome-extra
+                    # USE GDM AS DEFUALT DISPLAY MANAGER 
+                    # systemctl enable gdm.service --force
+                    # systemctl reboot
+                    # MANJARO THEME FOR GNOME
+                    # sudo pacman -S --needed manjaro-gnome-settings manjaro-settings-manager
+                    # NEW USER FOR GNOME
+                    # sudo useradd -mg lp,network,power,sys,wheel aditya-gnome
+                    # sudo passwd aditya-gnome
+                    break;;
+            [nn]* ) break;;
+            [ee]* ) exit;;
+            * ) echo "please answer y or n or e.";;
         esac
     done
 }
@@ -148,8 +249,8 @@ function installArchExCodingPrograms() {
         read -p "Do you want to install extra coding programs[yne]? " yne 
         case $yne in
             [Yy]* ) printf ">          RUNNING : sudo pacman -S          <\n"; 
-                    sudo pacman -S --noconfirm netbeans pycharm-community-edition intellij-idea-community-edition codeblocks dbeaver godot kate mysql-workbench;
-                    yay -S android-studio;
+                    sudo pacman -S --needed --noconfirm netbeans pycharm-community-edition intellij-idea-community-edition codeblocks dbeaver godot kate mysql-workbench;
+                    yay -S --needed android-studio;
                     break;;
             [Nn]* ) break;;
             [Ee]* ) exit;;
@@ -166,8 +267,8 @@ function installArchExMediaPrograms() {
         read -p "Do you want to install extra media programs[yne]? " yne 
         case $yne in
             [Yy]* ) printf ">          RUNNING : sudo pacman -S          <\n"; 
-                    sudo pacman -S --noconfirm krita inkscape blender gimp kdenlive;
-                    yay -S deadbeef;
+                    sudo pacman -S --needed --noconfirm krita inkscape blender gimp kdenlive;
+                    yay -S --needed deadbeef;
                     break;;
             [Nn]* ) break;;
             [Ee]* ) exit;;
@@ -184,8 +285,8 @@ function installArchMusicProdPrograms() {
         read -p "Do you want to install music production programs[yne]? " yne 
         case $yne in
             [Yy]* ) printf ">          RUNNING : sudo pacman -S          <\n"; 
-                    sudo pacman -S --noconfirm ardour audacity lmms helm rosegarden surge stochas;
-                    yay -S vital-synth reaper tracktion-waveform;
+                    sudo pacman -S --needed --noconfirm ardour audacity lmms helm rosegarden surge stochas;
+                    yay -S --needed vital-synth reaper tracktion-waveform;
                     break;;
             [Nn]* ) break;;
             [Ee]* ) exit;;
@@ -202,8 +303,8 @@ function installArchGamingPrograms() {
         read -p "Do you want to install gaming programs[yne]? " yne 
         case $yne in
             [Yy]* ) printf ">          RUNNING : sudo pacman -S          <\n"; 
-                    sudo pacman -S --noconfirm dolphin-emu pcsx2 libretro-pcsx2 retroarch;
-                    # yay -S ;
+                    sudo pacman -S --needed --noconfirm dolphin-emu pcsx2 libretro-pcsx2 retroarch;
+                    # yay -S --needed ;
                     break;;
             [Nn]* ) break;;
             [Ee]* ) exit;;
@@ -332,6 +433,7 @@ then
     installArchExMediaPrograms
     installArchMusicProdPrograms
     installArchGamingPrograms
+    installXfceOnArch
 elif [ "${distro,,}" == "ubuntu" ];
 then
     showBrickPattern
