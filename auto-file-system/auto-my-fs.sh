@@ -27,24 +27,21 @@ mkdir ~/vicky/music/
 mkdir ~/vicky/music/hindi/
 mkdir ~/vicky/music/english/
 mkdir ~/vicky/music/marathi/
+mkdir ~/vicky/music/japanese/
 mkdir ~/vicky/music/other/
 
 mkdir ~/vicky/softwares/
 mkdir ~/vicky/softwares/linux/
-mkdir ~/vicky/softwares/linux/appimages/
-mkdir ~/vicky/softwares/linux/debian/
-mkdir ~/vicky/softwares/linux/other/
 mkdir ~/vicky/softwares/windows/
-mkdir ~/vicky/softwares/windows/music-production/
 mkdir ~/vicky/softwares/windows/games/
-mkdir ~/vicky/softwares/windows/coding/
-mkdir ~/vicky/softwares/windows/other/
 
 mkdir ~/vicky/music-production/
 mkdir ~/vicky/music-production/daw/
 mkdir ~/vicky/music-production/daw/caustic/
 mkdir ~/vicky/music-production/daw/fl-studio/
-mkdir ~/vicky/music-production/daw/tracktion/
+mkdir ~/vicky/music-production/daw/lmms/
+mkdir ~/vicky/music-production/daw/ardour/
+mkdir ~/vicky/music-production/daw/waveform/
 mkdir ~/vicky/music-production/daw/ableton/
 mkdir ~/vicky/music-production/synth/
 mkdir ~/vicky/music-production/synth/vital/
@@ -73,3 +70,6 @@ mkdir ~/vicky/coding/c-sharp/
 mkdir ~/vicky/coding/bash/
 mkdir ~/vicky/coding/zsh/
 mkdir ~/vicky/coding/rust/
+
+mkdir ~/vicky/office
+
